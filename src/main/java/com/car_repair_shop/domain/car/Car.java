@@ -4,10 +4,12 @@ import com.car_repair_shop.domain.owner.Owner;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity(name = "cars")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Car {
 
     @Id
@@ -22,5 +24,6 @@ public class Car {
     @ManyToOne
     @JoinColumn(name ="owner_id")
     private Owner owner;
+
 
 }
