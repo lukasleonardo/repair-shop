@@ -1,0 +1,26 @@
+package com.car_repair_shop.domain.car;
+
+import com.car_repair_shop.domain.owner.Owner;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Entity(name = "cars")
+@Data
+@AllArgsConstructor
+public class Car {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
+    private String plate;
+    private String brand;
+    private String model;
+    private String color;
+
+    @ManyToOne
+    @JoinColumn(name ="owner_id")
+    private Owner owner;
+
+}
