@@ -5,18 +5,21 @@ import com.car_repair_shop.domain.owner.Owner;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "service_orders")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ServiceOrder {
 
     @Id
@@ -26,13 +29,15 @@ public class ServiceOrder {
 
 
     @Lob
+    @ElementCollection
     private List<byte[]> prevImages;
 
     @Lob
+    @ElementCollection
     private List<byte[]> afterImages;
 
-    private Timestamp initialDate;
-    private Timestamp finalDate;
+    private LocalDate initialDate;
+    private LocalDate finalDate;
 
     @ManyToOne
     @JoinColumn(name = "car_id")
@@ -43,31 +48,14 @@ public class ServiceOrder {
 
 
 
-    public void addPrevImage(BufferedImage image) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(image, "jpg", baos);
-        baos.flush();
-        prevImages.add(baos.toByteArray());
-        baos.close();
+    public void addPrevImage(byte[] image) {
+        prevImages.add(image);
     }
 
-    public void addAfterImage(BufferedImage image) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(image, "jpg", baos);
-        baos.flush();
-        afterImages.add(baos.toByteArray());
-        baos.close();
+    public void addAfterImage(byte[] image) {
+        afterImages.add(image);
     }
 
-    public BufferedImage getPrevImage(int index) throws IOException {
-        byte[] imageData = prevImages.get(index);
-        return ImageIO.read(new ByteArrayInputStream(imageData));
-    }
-
-    public BufferedImage getAfterImage(int index) throws IOException {
-        byte[] imageData = afterImages.get(index);
-        return ImageIO.read(new ByteArrayInputStream(imageData));
-    }
 
     public void removePrevImage(int index) {
         prevImages.remove(index);
