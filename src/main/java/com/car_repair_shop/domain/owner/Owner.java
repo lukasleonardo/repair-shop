@@ -1,7 +1,7 @@
 package com.car_repair_shop.domain.owner;
 
 import com.car_repair_shop.domain.car.Car;
-import com.car_repair_shop.dtos.OwnerDTO;
+import com.car_repair_shop.dtos.ownerDTO.OwnerDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,5 +32,6 @@ public class Owner {
         this.address = ownerDTO.address();
 
     }
+
 }
 

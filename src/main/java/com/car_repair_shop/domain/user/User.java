@@ -1,6 +1,7 @@
 package com.car_repair_shop.domain.user;
 
-import com.car_repair_shop.dtos.UserDTO;
+
+import com.car_repair_shop.dtos.userDTO.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
