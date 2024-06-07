@@ -1,4 +1,4 @@
-package com.car_repair_shop.dtos;
+package com.car_repair_shop.dtos.ownerDTO;
 
 import com.car_repair_shop.domain.car.Car;
 
