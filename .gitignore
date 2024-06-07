@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+##local-variables##
+/src/main/resources/application-local-secrets.properties
