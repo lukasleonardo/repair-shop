@@ -1,8 +1,8 @@
 package com.car_repair_shop.service;
 
 import com.car_repair_shop.domain.owner.Owner;
-import com.car_repair_shop.domain.user.User;
-import com.car_repair_shop.dtos.OwnerDTO;
+import com.car_repair_shop.dtos.ownerDTO.OwnerDTO;
+import com.car_repair_shop.exception.OwnerNotFoundException;
 import com.car_repair_shop.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class OwnerService {
     }
 
     public Owner findOwnerById(Long id) throws Exception {
-        Owner owner = this.ownerRepository.findById(id).orElseThrow(()-> new Exception("Proprietário não encontrado"));
+        Owner owner = this.ownerRepository.findById(id).orElseThrow(OwnerNotFoundException::new);
         return owner;
     }
 
