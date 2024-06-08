@@ -4,5 +4,5 @@ import com.car_repair_shop.domain.car.Car;
 
 import java.util.List;
 
-public record OwnerDTO(String name, String phone, String address, List<Car> cars ) {
+public record OwnerRequestDTO(String name, String phone, String address, List<Car> cars ) {
 }
