@@ -1,32 +1,18 @@
 package com.car_repair_shop.dtoMappers;
 
-import com.car_repair_shop.domain.car.Car;
-import com.car_repair_shop.domain.owner.Owner;
-import com.car_repair_shop.dtos.carDTO.CarRequestDTO;
-import com.car_repair_shop.dtos.carDTO.CarResponseDTO;
 
+import com.car_repair_shop.domain.user.User;
+import com.car_repair_shop.dtos.userDTO.UserResponseDTO;
 
 public class UserDTOMapper {
-        public static Car toEntity(CarRequestDTO carRequestDTO, Owner owner) {
-            Car car = new Car();
-            car.setBrand(carRequestDTO.brand());
-            car.setModel(carRequestDTO.model());
-            car.setPlate(carRequestDTO.plate());
-            car.setColor(carRequestDTO.color());
-            car.setOwner(owner);
-            return car;
-        }
 
-        public static CarResponseDTO toDTO(Car car) {
-            CarResponseDTO carResponseDTO = new CarResponseDTO(
-                    car.getId(),
-                    car.getBrand(),
-                    car.getModel(),
-                    car.getPlate(),
-                    car.getColor(),
-                    car.getOwner().getId()
-            );
-            return carResponseDTO;
-        }
+    public static UserResponseDTO toDTO(User user) {
+        return new UserResponseDTO(
+                user.getId(),
+                user.getLogin(),
+                user.getPassword(),
+                user.getRole()
+        );
+    }
 
 }
