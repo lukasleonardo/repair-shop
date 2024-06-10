@@ -8,7 +8,8 @@ import java.util.List;
 public record ServiceOrderResponseDTO(Long id, String description, LocalDate initialDate, LocalDate finalDate, List<String> prevImages,
                                       List<String> afterImages, Long car_id, Long owner_id) {
     public ServiceOrderResponseDTO(ServiceOrder serviceOrder){
-        this( serviceOrder.getId(),
+        this(
+                serviceOrder.getId(),
                 serviceOrder.getDescription(),
                 serviceOrder.getInitialDate(),
                 serviceOrder.getFinalDate(),

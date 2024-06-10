@@ -1,7 +1,7 @@
 package com.car_repair_shop.dtos.carDTO;
 
 
-public record CarRequestDTO(String plate, String color, String brand, String model, Long owner_id) {
+public record CarRequestDTO(String plate,  String brand, String model, String color, Long owner_id) {
     @Override
     public String plate() {
         return plate;

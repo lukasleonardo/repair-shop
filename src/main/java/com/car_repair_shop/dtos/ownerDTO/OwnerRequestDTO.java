@@ -4,7 +4,7 @@ import com.car_repair_shop.domain.car.Car;
 
 import java.util.List;
 
-public record OwnerRequestDTO( Long id, String name, String phone, String address, List<Car> cars ) {
+public record OwnerRequestDTO( Long id, String name, String phone, String address ) {
 
     @Override
     public Long id() {
@@ -26,9 +26,5 @@ public record OwnerRequestDTO( Long id, String name, String phone, String addres
         return address;
     }
 
-    @Override
-    public List<Car> cars() {
-        return cars;
-    }
 
 }

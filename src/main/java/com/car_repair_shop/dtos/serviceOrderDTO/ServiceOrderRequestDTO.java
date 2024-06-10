@@ -3,16 +3,11 @@ package com.car_repair_shop.dtos.serviceOrderDTO;
 import java.time.LocalDate;
 import java.util.List;
 
-public record ServiceOrderRequestDTO(String description, LocalDate initialDate, List<String> prevImages,
+public record ServiceOrderRequestDTO(String description,  List<String> prevImages,
                                      Long car_id, Long owner_id) {
     @Override
     public String description() {
         return description;
-    }
-
-    @Override
-    public LocalDate initialDate() {
-        return initialDate;
     }
 
     @Override
