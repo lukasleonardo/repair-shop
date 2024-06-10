@@ -1,9 +1,7 @@
 package com.car_repair_shop.dtos.serviceOrderDTO;
 
 import com.car_repair_shop.domain.service_order.ServiceOrder;
-import com.car_repair_shop.domain.user.User;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 
