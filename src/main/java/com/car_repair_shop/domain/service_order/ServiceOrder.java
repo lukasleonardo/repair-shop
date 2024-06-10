@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "service_orders")
@@ -21,10 +22,8 @@ public class ServiceOrder {
     private Long id;
     private String description;
 
-
-
-    private List<String> prevImages;
-    private List<String> afterImages;
+    private List<String> prevImages = new ArrayList<>();
+    private List<String> afterImages = new ArrayList<>();
 
     private LocalDate initialDate;
     private LocalDate finalDate;
