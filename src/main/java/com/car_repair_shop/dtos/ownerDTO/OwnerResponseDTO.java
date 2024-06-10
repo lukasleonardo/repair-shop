@@ -11,5 +11,4 @@ public record OwnerResponseDTO(Long id, String name, String phone, String addres
         this(owner.getId(), owner.getName(), owner.getAddress(), owner.getPhone(), owner.getCars());
     }
 
-
 }

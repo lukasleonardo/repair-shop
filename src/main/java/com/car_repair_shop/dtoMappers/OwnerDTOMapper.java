@@ -20,7 +20,8 @@ public class OwnerDTOMapper {
                 owner.getId(),
                 owner.getName(),
                 owner.getPhone(),
-                owner.getAddress()
+                owner.getAddress(),
+                owner.getCars()
 
         );
     }
