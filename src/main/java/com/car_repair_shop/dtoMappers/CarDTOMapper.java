@@ -9,9 +9,9 @@ public class CarDTOMapper {
         public static CarResponseDTO toDTO(Car car) {
             return new CarResponseDTO(
                     car.getId(),
+                    car.getPlate(),
                     car.getBrand(),
                     car.getModel(),
-                    car.getPlate(),
                     car.getColor(),
                     car.getOwner().getId()
             );
