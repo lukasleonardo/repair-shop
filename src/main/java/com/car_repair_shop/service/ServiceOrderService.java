@@ -2,9 +2,8 @@ package com.car_repair_shop.service;
 
 import com.car_repair_shop.domain.car.Car;
 import com.car_repair_shop.domain.owner.Owner;
-import com.car_repair_shop.dtos.carDTO.CarResponseDTO;
-import com.car_repair_shop.exception.CarNotFoundException;
-import com.car_repair_shop.exception.OwnerNotFoundException;
+import com.car_repair_shop.dtos.serviceOrderDTO.ServiceOrderResponseDTO;
+import com.car_repair_shop.exception.NotFoundException;
 import jakarta.transaction.Transactional;
 import com.car_repair_shop.domain.service_order.ServiceOrder;
 import com.car_repair_shop.dtos.serviceOrderDTO.ServiceOrderRequestDTO;
@@ -29,29 +28,27 @@ public class ServiceOrderService {
     private CarService carService;
 
     @Transactional
-    public ServiceOrder createServiceOrder(ServiceOrderRequestDTO serviceOrderRequestDTO) throws Exception {
+    public ServiceOrder createServiceOrder(ServiceOrderRequestDTO serviceOrderRequestDTO) throws NotFoundException {
+
+        Owner owner= ownerService.findOwnerById(serviceOrderRequestDTO.owner_id());
+        Car car = carService.findCarById(serviceOrderRequestDTO.car_id());
+
         ServiceOrder serviceOrder = new ServiceOrder();
         serviceOrder.setDescription(serviceOrderRequestDTO.description());
         serviceOrder.setInitialDate(LocalDate.now());
-
-        Owner owner = ownerService.findOwnerById(serviceOrderRequestDTO.owner_id());
         serviceOrder.setOwner(owner);
-
-        CarResponseDTO carDTO = carService.findCarById(serviceOrderRequestDTO.car_id());
-
-        Car car = new Car(carDTO);
         serviceOrder.setCar(car);
+        //ADICIONAR PREVIMAGES ???
 
-        return  serviceOrder;
+        return this.serviceOrderRepository.save(serviceOrder);
     }
 
-    public ServiceOrder FindById(Long id) throws Exception {
-        ServiceOrder serviceOrder = this.serviceOrderRepository.findById(id).orElseThrow(()-> new Exception("Ordem de serviço não Encontrada"));
-        return serviceOrder;
+    public ServiceOrder FindOrderById(Long id) throws NotFoundException {
+        return this.serviceOrderRepository.findById(id).orElseThrow(()-> new NotFoundException("Ordem de serviço não Encontrada"));
     }
 
-    public List<ServiceOrder> FindAll(){
-        return this.serviceOrderRepository.findAll();
+    public List<ServiceOrderResponseDTO> FindAllOrders(){
+        return this.serviceOrderRepository.findAll().stream().map(ServiceOrderResponseDTO::new).toList();
     }
 
 

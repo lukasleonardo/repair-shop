@@ -1,7 +1,9 @@
 package com.car_repair_shop.service;
 
 import com.car_repair_shop.domain.user.User;
-import com.car_repair_shop.dtos.userDTO.UserDTO;
+import com.car_repair_shop.dtos.userDTO.UserRequestDTO;
+import com.car_repair_shop.dtos.userDTO.UserResponseDTO;
+import com.car_repair_shop.exception.NotFoundException;
 import com.car_repair_shop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,21 +16,17 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User createUser(UserDTO userDTO){
-        User user = new User(userDTO);
-        this.userRepository.save(user);
-        return user;
+    public User createUser(UserRequestDTO userRequestDTO){
+        User user = new User(userRequestDTO);
+        return this.userRepository.save(user);
     }
-    // EXEMPLO DE RETORNO CORRETO
-    public UserDTO findUserById(Long id) throws Exception {
-        User user = this.userRepository.findById(id).orElseThrow(()-> new Exception("Usuario não encontrado"));
-        UserDTO userDto = new UserDTO(user);
-        return userDto;
+
+    public User findUserById(Long id) throws NotFoundException {
+        return this.userRepository.findById(id).orElseThrow(()-> new NotFoundException("Usuário não encontrado com ID: "+id));
     }
-    // EXEMPLO DE RETORNO CORRETO
-    public List<UserDTO> findAllUsers(){
-        List<UserDTO> users = this.userRepository.findAll().stream().map(UserDTO::new).toList();
-        return users;
+
+    public List<UserResponseDTO> findAllUsers(){
+        return this.userRepository.findAll().stream().map(UserResponseDTO::new).toList();
     }
 
     public void deleteUserById(Long id){
