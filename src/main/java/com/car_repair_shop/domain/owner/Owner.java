@@ -35,6 +35,16 @@ public class Owner {
 
     }
 
+    public void addCar(Car car) {
+        cars.add(car);
+        car.setOwner(this);
+    }
+
+    public void removeCar(Car car) {
+        cars.remove(car);
+        car.setOwner(null);
+    }
+
 
 }
 

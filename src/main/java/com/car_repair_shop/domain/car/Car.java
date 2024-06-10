@@ -23,15 +23,22 @@ public class Car {
     private String color;
 
     @ManyToOne
-    @JoinColumn(name ="owner_id")
+    @JoinColumn(name = "owner_id")
     private Owner owner;
 
     public Car(CarRequestDTO carRequestDTO, Owner owner) {
 
             this.plate = carRequestDTO.plate();
-            this.model = carRequestDTO.model();
             this.brand = carRequestDTO.brand();
+            this.model = carRequestDTO.model();
             this.color = carRequestDTO.color();
-            this.owner = owner;
+            setOwner(owner);
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+        if (owner != null && !owner.getCars().contains(this)) {
+            owner.addCar(this);
+        }
     }
 }

@@ -17,12 +17,12 @@ public class User {
     private String login;
     private String password;
     @Enumerated(EnumType.STRING)
-    private UserType Role;
+    private UserType role;
 
     public User(UserRequestDTO userRequestDTO) {
         this.login = userRequestDTO.login();
         this.password = userRequestDTO.password();
-        this.Role = userRequestDTO.role();
+        this.role = userRequestDTO.role();
     }
 
 
