@@ -1,7 +1,7 @@
 package com.car_repair_shop.domain.car;
 
 import com.car_repair_shop.domain.owner.Owner;
-import com.car_repair_shop.dtos.carDTO.CarResponseDTO;
+import com.car_repair_shop.dtos.carDTO.CarRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +26,12 @@ public class Car {
     @JoinColumn(name ="owner_id")
     private Owner owner;
 
+    public Car(CarRequestDTO carRequestDTO, Owner owner) {
 
-    public Car(CarResponseDTO carOptional) {
+            this.plate = carRequestDTO.plate();
+            this.model = carRequestDTO.model();
+            this.brand = carRequestDTO.brand();
+            this.color = carRequestDTO.color();
+            this.owner = owner;
     }
 }

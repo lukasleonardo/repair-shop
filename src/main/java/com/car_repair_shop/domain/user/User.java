@@ -1,13 +1,14 @@
 package com.car_repair_shop.domain.user;
 
 
-import com.car_repair_shop.dtos.userDTO.UserDTO;
+import com.car_repair_shop.dtos.userDTO.UserRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity(name = "users")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +19,11 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserType Role;
 
-    public User(UserDTO userDTO) {
-        this.login = userDTO.login();
-        this.password = userDTO.password();
-        this.Role = userDTO.role();
+    public User(UserRequestDTO userRequestDTO) {
+        this.login = userRequestDTO.login();
+        this.password = userRequestDTO.password();
+        this.Role = userRequestDTO.role();
     }
+
+
 }

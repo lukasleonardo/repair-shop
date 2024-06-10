@@ -1,10 +1,11 @@
 package com.car_repair_shop.domain.owner;
 
 import com.car_repair_shop.domain.car.Car;
-import com.car_repair_shop.dtos.ownerDTO.OwnerDTO;
+import com.car_repair_shop.dtos.ownerDTO.OwnerRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity(name = "owners")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Owner {
 
     @Id
@@ -25,13 +27,14 @@ public class Owner {
     private List<Car> cars = new ArrayList<>();;
 
 
-    public Owner(OwnerDTO ownerDTO) {
+    public Owner(OwnerRequestDTO ownerRequestDTO) {
 
-        this.name = ownerDTO.name();
-        this.phone = ownerDTO.phone();
-        this.address = ownerDTO.address();
+        this.name = ownerRequestDTO.name();
+        this.phone = ownerRequestDTO.phone();
+        this.address = ownerRequestDTO.address();
 
     }
+
 
 }
 
